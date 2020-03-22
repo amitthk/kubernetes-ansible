@@ -1,0 +1,11 @@
+- name: ping
+  hosts: all
+  become: yes
+  gather_facts: no
+  become_user: "root"
+  become_method: "{{ansible_become_method}}"
+  tags:
+    - ping
+  tasks:
+    - name: list the hostname
+      command: "hostname"

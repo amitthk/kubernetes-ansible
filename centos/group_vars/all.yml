@@ -1,0 +1,23 @@
+ansible_ssh_user: centos
+
+#Enter the IP Address of the Kubernetes Master node to the ad_addr variable.
+bastion_ip: "{{groups['bastion'][0]}}"
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o ProxyCommand="ssh -i {{ansible_ssh_private_key_file}} -W %h:%p centos@{{bastion_ip}}"'
+
+ad_addr: 172.31.76.202
+cidr_v: 172.31.0.0/16
+
+packages:
+- kubeadm
+- kubectl
+
+services:
+- docker
+- kubelet
+- firewalld
+
+ports:
+- "6443/tcp"
+- "10250/tcp"
+
+token_file: join_token

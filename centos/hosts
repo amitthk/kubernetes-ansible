@@ -1,5 +1,10 @@
 [kubernetes-master-nodes]
-kubernetes-master ansible_host=192.168.2.1
+kubernetes-master ansible_host=172.31.76.202
 
 [kubernetes-worker-nodes]
-kubernetes-worker ansible_host=192.168.2.2
+kubernetes-worker ansible_host=172.31.78.155
+kubernetes-worker ansible_host=172.31.74.8
+
+[bastion]
+54.254.251.25
+
