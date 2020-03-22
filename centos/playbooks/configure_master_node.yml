@@ -12,15 +12,15 @@
     shell: kubeadm init --apiserver-advertise-address {{ad_addr}} --pod-network-cidr={{cidr_v}}
     register: output
   
-  - name: Ensure /data/centos exist
+  - name: "Ensure /{{inventory_dir}}/centos exist"
     file:
-      path: /data/centos
+      path: "{{inventory_dir}}/centos"
       state: directory
       mode: 776
     delegate_to: localhost
 
   - name: Storing Logs and Generated token for future purpose.
-    local_action: copy content={{ output.stdout }} dest=/data/centos/{{ token_file }}
+    local_action: copy content={{ output.stdout }} dest="/{{inventory_dir}}/centos/{{ token_file }}"
 
   - name: Copying required files
     shell: |
